@@ -1,5 +1,3 @@
-// lib/services/stepService.ts
-
 import { SupabaseClient } from '@supabase/supabase-js'
 import {
   Step,

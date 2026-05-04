@@ -1,5 +1,3 @@
-// lib/services/tripService.ts
-
 import { SupabaseClient } from '@supabase/supabase-js'
 import { Trip, TripWithSteps, PublicTrip, PublicStep, StepType, TripInsert, TripUpdate } from '@/types/database'
 import { generateSlug } from '@/lib/utils/slug'
