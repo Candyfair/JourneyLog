@@ -95,3 +95,46 @@ export const stepUpdateSchema = z
 
 export type StepCreateInput = z.infer<typeof stepCreateSchema>;
 export type StepUpdateInput = z.infer<typeof stepUpdateSchema>;
+
+export const stepReorderSchema = z.array(
+  z.object({
+    id: z.number().int().positive(),
+    position: z.number().int().positive(),
+  }),
+);
+
+export type StepReorderInput = z.infer<typeof stepReorderSchema>;
+
+export const accommodationCreateSchema = z.object({
+  step_id: z.number().int().positive(),
+  accommodation_type: z.string().nullable().optional().default(null),
+  city: z.string().min(1, 'City name is required'),
+  name_private: z.string().nullable().optional().default(null),
+  address_private: z.string().nullable().optional().default(null),
+  phone_private: z.string().nullable().optional().default(null),
+  confirmation_ref_private: z.string().nullable().optional().default(null),
+  checkin_time: z.string().nullable().optional().default(null),
+  checkout_time: z.string().nullable().optional().default(null),
+});
+
+export const accommodationUpdateSchema = z
+  .object({
+    accommodation_type: z.string().nullable().optional(),
+    city: z.string().min(1).optional(),
+    name_private: z.string().nullable().optional(),
+    address_private: z.string().nullable().optional(),
+    phone_private: z.string().nullable().optional(),
+    confirmation_ref_private: z.string().nullable().optional(),
+    checkin_time: z.string().nullable().optional(),
+    checkout_time: z.string().nullable().optional(),
+  })
+  .refine((data) => Object.keys(data).length > 0, {
+    message: 'At least one field must be provided',
+  });
+
+export type AccommodationCreateInput = z.infer<
+  typeof accommodationCreateSchema
+>;
+export type AccommodationUpdateInput = z.infer<
+  typeof accommodationUpdateSchema
+>;
