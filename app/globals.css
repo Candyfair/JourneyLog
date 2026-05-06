@@ -1,26 +1,78 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/* ============================================================
+   Fonts
+   ============================================================ */
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   Design tokens — CSS custom properties
+   ============================================================ */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-background: hsl(47, 100%, 63%);
+  --color-background-light: hsla(47, 100%, 63%, 0.2);
+  --color-text: hsl(0, 0%, 0%);
+  --color-frame: hsl(0, 0%, 100%);
+  --color-booking: hsl(234, 96%, 40%);
+  --color-footer: hsl(0, 0%, 40%);
+  --color-inactive: hsla(0, 0%, 0%, 0.1);
+  --color-modal-bg: hsla(0, 0%, 0%, 0.4);
+  --color-mandatory: hsla(360, 100%, 42%, 1);
+  --color-white: hsl(0, 0%, 100%);
+  --color-input: hsla(0, 0%, 100%, 0.8);
+  --color-time-picker: hsl(0, 0%, 95%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   Theme — extends Tailwind with custom tokens
+   ============================================================ */
+
+@theme {
+  --font-sans: 'Raleway', sans-serif;
+
+  --color-background: hsl(47, 100%, 63%);
+  --color-background-light: hsla(47, 100%, 63%, 0.2);
+  --color-booking: hsl(234, 96%, 40%);
+  --color-footer: hsl(0, 0%, 40%);
+  --color-inactive: hsla(0, 0%, 0%, 0.1);
+  --color-modal-bg: hsla(0, 0%, 0%, 0.4);
+  --color-mandatory: hsla(360, 100%, 42%, 1);
+  --color-input: hsla(0, 0%, 100%, 0.8);
+  --color-time-picker: hsl(0, 0%, 95%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   Base styles
+   ============================================================ */
+
+html,
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--color-text);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+    to bottom,
+    var(--color-background) 0%,
+    hsla(47, 100%, 63%, 0.15) 100%
+  );
+  background-attachment: fixed;
 }
