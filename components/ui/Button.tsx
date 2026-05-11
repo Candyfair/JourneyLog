@@ -11,10 +11,10 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const base =
-    'px-6 py-2 rounded-lg border border-black font-semibold transition-opacity disabled:opacity-40 cursor-pointer';
+    'px-6 py-2 rounded-md border border-black transition-opacity disabled:opacity-40 cursor-pointer';
 
   const variants: Record<ButtonVariant, string> = {
-    primary: 'text-booking bg-transparent hover:bg-inactive',
+    primary: 'text-booking bg-inactive hover:bg-modal-bg',
     ghost: 'text-black bg-transparent hover:bg-inactive border-transparent',
   };
 

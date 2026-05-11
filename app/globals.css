@@ -29,7 +29,7 @@
   --color-background-light: hsla(47, 100%, 63%, 0.2);
   --color-text: hsl(0, 0%, 0%);
   --color-frame: hsl(0, 0%, 100%);
-  --color-booking: hsl(234, 96%, 40%);
+  --color-booking: hsl(217, 100%, 50%);
   --color-footer: hsl(0, 0%, 40%);
   --color-inactive: hsla(0, 0%, 0%, 0.1);
   --color-modal-bg: hsla(0, 0%, 0%, 0.4);
@@ -48,7 +48,7 @@
 
   --color-background: hsl(47, 100%, 63%);
   --color-background-light: hsla(47, 100%, 63%, 0.2);
-  --color-booking: hsl(234, 96%, 40%);
+  --color-booking: hsl(217, 100%, 50%);
   --color-footer: hsl(0, 0%, 40%);
   --color-inactive: hsla(0, 0%, 0%, 0.1);
   --color-modal-bg: hsla(0, 0%, 0%, 0.4);
