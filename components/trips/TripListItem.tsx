@@ -1,5 +1,6 @@
 import { Trip } from "@/types/database";
-import { Lock, LockOpen, Trash2 } from "lucide-react";
+import { Lock, LockOpen, Trash2, GripVertical } from "lucide-react";
+import { useSwipeable } from 'react-swipeable';
 
 interface TripListItemProps {
   trip: Trip;
@@ -19,13 +20,23 @@ export default function TripListItem({
     onDelete();
   }
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: onDelete
+  });
+
   return (
-    <div className="border rounded-md p-4 flex justify-between items-center group" onClick={onSelect}>
+    <div {...swipeHandlers} className="border rounded-md p-4 flex justify-between items-center group" onClick={onSelect}>
       <div>
-        { trip.is_public 
-          ? <LockOpen />
-          : <Lock />
+        { 
+          isEditMode && <GripVertical className="mr-3" />
         }
+
+        { 
+          trip.is_public 
+            ? <LockOpen />
+            : <Lock />
+        }
+        
         <span className="font-semibold text-lg ml-2">{trip.trip_name}</span>
       </div>
 
