@@ -1,11 +1,11 @@
-import { Trip } from "@/types/database";
-import { Lock, LockOpen, Trash2, GripVertical } from "lucide-react";
+import { Trip } from '@/types/database';
+import { Lock, LockOpen, Trash2, GripVertical } from 'lucide-react';
 import { useSwipeable } from 'react-swipeable';
 
 interface TripListItemProps {
   trip: Trip;
-  onDelete: () => void;
-  onSelect: () => void;
+  onDelete: (id: number) => void;
+  onSelect: (id: number) => void;
   isEditMode: boolean;
 }
 
@@ -13,35 +13,35 @@ export default function TripListItem({
   trip,
   onDelete,
   onSelect,
-  isEditMode
+  isEditMode,
 }: TripListItemProps) {
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onDelete();
-  }
+    onDelete(trip.id);
+  };
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: onDelete
+    onSwipedLeft: () => onDelete(trip.id),
   });
 
   return (
-    <div {...swipeHandlers} className="border rounded-md p-4 flex justify-between items-center group" onClick={onSelect}>
+    <div
+      {...swipeHandlers}
+      className='border rounded-md p-4 flex justify-between items-center group'
+      onClick={() => onSelect(trip.id)}
+    >
       <div>
-        { 
-          isEditMode && <GripVertical className="mr-3" />
-        }
+        {isEditMode && <GripVertical className='mr-3' />}
 
-        { 
-          trip.is_public 
-            ? <LockOpen />
-            : <Lock />
-        }
-        
-        <span className="font-semibold text-lg ml-2">{trip.trip_name}</span>
+        {trip.is_public ? <LockOpen /> : <Lock />}
+
+        <span className='font-semibold text-lg ml-2'>{trip.trip_name}</span>
       </div>
 
-      <Trash2 className="group-hover:visible invisible" onClick={(e) => handleDelete(e)} />
+      <Trash2
+        className='group-hover:visible invisible'
+        onClick={(e) => handleDelete(e)}
+      />
     </div>
-  )
+  );
 }
-
