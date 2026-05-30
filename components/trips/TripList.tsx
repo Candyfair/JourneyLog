@@ -1,17 +1,29 @@
+'use client'
+
 import { Trip } from '@/types/database';
 import { useState } from 'react';
 import TripListItem from './TripListItem';
 import Button from '../ui/Button';
+import { useRouter } from 'next/navigation';
 
 interface TripListProps {
   trips: Trip[];
-  onSelect: (id: number) => void;
-  onDelete: (id: number) => void;
 }
 
-export default function TripList({ trips, onDelete, onSelect }: TripListProps) {
+export default function TripList({ trips }: TripListProps) {
+  const router = useRouter();
+
   const [currentList, setCurrentList] = useState(trips);
   const [isEditMode, setIsEditMode] = useState(false);
+
+  const onSelect = (id: number) => {
+    router.push(`/trips/${id}`)
+  }
+
+  const onDelete = async (id: number) => {
+    await fetch(`/api/trips/${id}`, { method: 'DELETE' })
+    setCurrentList(currentList.filter(trip => trip.id !== id))
+  }
 
   return (
     <div className='flex justify-end items-center flex-col'>

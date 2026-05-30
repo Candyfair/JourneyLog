@@ -3,7 +3,8 @@ import { getByUser } from '@/lib/services/tripService';
 import { redirect } from 'next/navigation'
 import Link from 'next/link';
 import AppHeader from '@/components/ui/AppHeader';
-
+import TripList from '@/components/trips/TripList';
+import { Trip } from '@/types/database';
 
 export default async function DashboardPage() {
   const supabase = await createServerClient();
@@ -17,7 +18,7 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
-  let tripList = []
+  let tripList: Array<Trip> = []
   try {
     tripList = await getByUser(supabase, user.id)
   } catch {
@@ -38,8 +39,7 @@ export default async function DashboardPage() {
             
           </div>
         ) : (
-          // <TripList trips={tripList} />
-          <div />
+          <TripList trips={tripList} />
         )}
     </div>
   )
